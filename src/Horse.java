@@ -1,0 +1,36 @@
+public class Horse extends ChessPiece{
+
+    public Horse(String color) {
+        super(color);
+    }
+
+    @Override
+    public String getColor() {
+        return "";
+    }
+
+    @Override
+    public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+
+        if (toLine >= 0 && toColumn >= 0 && toLine < 8 && toColumn < 8 && !(line == toLine && column == toColumn)) {
+
+            if ((line == toLine - 2 || line == toLine + 2) && (column == toColumn + 1 || column == toColumn - 1)) {
+
+                return true;
+            } else if ((line == toLine - 1 || line == toLine + 1) && (column == toColumn + 2 || column == toColumn - 2)) {
+
+                return true;
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String getSymbol() {
+        return "H";
+    }
+}
