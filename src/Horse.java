@@ -1,11 +1,13 @@
 public class Horse extends ChessPiece{
 
     public Horse(String color) {
+
         super(color);
     }
 
     @Override
     public String getColor() {
+
         return color;
     }
 
@@ -21,16 +23,19 @@ public class Horse extends ChessPiece{
 
                 return true;
             } else {
+
                 return false;
             }
 
         } else {
+
             return false;
         }
     }
 
     @Override
     public String getSymbol() {
+
         return "H";
     }
 }
