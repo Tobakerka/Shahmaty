@@ -1,4 +1,4 @@
-public class King extends ChessPiece{
+public class King extends ChessPiece {
     public King(String color) {
         super(color);
     }
@@ -39,8 +39,21 @@ public class King extends ChessPiece{
                 }
             }
         }
-
+        this.check = false;
         return true;
+    }
+
+    public boolean isUnderAttack(ChessBoard chessBoard, int line, int column) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (chessBoard.board[i][j] != null && !chessBoard.board[i][j].getColor().equals(color)) {
+                    if (chessBoard.board[i][j].canMoveToPosition(chessBoard, i, j, line, column)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override
