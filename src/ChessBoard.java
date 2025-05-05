@@ -31,10 +31,16 @@ public class ChessBoard {
         } else return false;
     }
 
-    public void printBoard() {  //print board in console
+    public void printBoard() {
+        int num = 0;
         System.out.println("Turn " + nowPlayer);
         System.out.println();
-        System.out.println("Player 2(Black)");
+        if (nowPlayer.equals("Black")) {
+            num = 2;
+        } else {
+            num = 1;
+        }
+        System.out.println("Player: " + num + " " + nowPlayer);
         System.out.println();
         System.out.println("\t0\t1\t2\t3\t4\t5\t6\t7");
         for (int i = 7; i > -1; i--) {
@@ -49,7 +55,12 @@ public class ChessBoard {
             System.out.println();
             System.out.println();
         }
-        System.out.println("Player 1(White)");
+        if (nowPlayer.equals("White")) {
+            num = 1;
+        } else {
+            num = 2;
+        }
+        System.out.println("Player: " + num + " " + nowPlayer);
     }
 
     public boolean checkPos(int pos) {
