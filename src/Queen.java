@@ -22,13 +22,21 @@ public class Queen extends ChessPiece{
             if (line == toLine) {
                 for (int i = Math.min(column, toColumn) + 1; i < Math.max(column, toColumn); i++) {
                     if (chessBoard.board[line][i] != null) {
-                        return false;
+                        if (chessBoard.board[line][i].getColor().equals(this.color)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 }
             } else if (column == toColumn) {
                 for (int i = Math.min(line, toLine) + 1; i < Math.max(line, toLine); i++) {
                     if (chessBoard.board[i][column] != null) {
-                        return false;
+                        if (chessBoard.board[i][column].getColor().equals(this.color)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 }
             } else {
@@ -36,7 +44,11 @@ public class Queen extends ChessPiece{
                 int dy = (toLine - line) / Math.abs(toLine - line);
                 for (int i = 1; i < Math.abs(toColumn - column); i++) {
                     if (chessBoard.board[line + i * dy][column + i * dx] != null) {
-                        return false;
+                        if (chessBoard.board[line + i * dy][column + i * dx].getColor().equals(this.color)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 }
             }

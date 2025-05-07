@@ -18,10 +18,19 @@ public class Horse extends ChessPiece{
 
             if ((line == toLine - 2 || line == toLine + 2) && (column == toColumn + 1 || column == toColumn - 1)) {
 
-                return true;
+                if (chessBoard.board[toLine][toColumn] == null || !chessBoard.board[toLine][toColumn].color.equals(this.color)) {
+                    return true;
+                } else {
+                    return false;
+                }
+
             } else if ((line == toLine - 1 || line == toLine + 1) && (column == toColumn + 2 || column == toColumn - 2)) {
 
-                return true;
+                if (chessBoard.board[toLine][toColumn] == null || chessBoard.board[toLine][toColumn].getColor().equals(this.color)) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
 
                 return false;
