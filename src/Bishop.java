@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Bishop extends ChessPiece {
 
     public Bishop(String color) {
@@ -18,23 +20,34 @@ public class Bishop extends ChessPiece {
             return false;
         }
 
-        if (Math.abs(line - toLine) == Math.abs(column - toColumn)) {
-            for (int i = 1; i < Math.abs(line - toLine); i++) {
-                if ((chessBoard.board[toLine + i][toColumn -1 + i] != null)) {
-                    return false;
+        if (chessBoard.nowPlayer.equals(this.color)) {
+            if (Math.abs(toLine - line) == Math.abs(toColumn - column)) {
+                if (chessBoard.board[toLine][toColumn] == null || !Objects.equals(chessBoard.board[toLine][toColumn].color, this.color)) {
+                    for (int i = 1; i < Math.abs(toLine - line); i++) {
+                        if (line < toLine && column < toColumn) {
+                            if (chessBoard.board[line + i][column + i] != null) {
+                                return false;
+                            }
+                        } else if (line < toLine && column > toColumn) {
+                            if (chessBoard.board[line + i][column - i] != null) {
+                                return false;
+                            }
+                        } else if (line > toLine && column < toColumn) {
+                            if (chessBoard.board[line - i][column + i] != null) {
+                                return false;
+                            }
+                        } else {
+                            if (chessBoard.board[line - i][column - i] != null) {
+                                return false;
+                            }
+                        }
+                    }
+                    return true;
                 }
             }
-
-            if (!chessBoard.board[toLine][toColumn].color.equals(this.color)) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
         }
+        return false;
     }
-
     @Override
     public String getSymbol() {
 
