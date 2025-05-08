@@ -14,33 +14,26 @@ public class Horse extends ChessPiece{
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
 
-        if (toLine >= 0 && toColumn >= 0 && toLine < 8 && toColumn < 8 && !(line == toLine && column == toColumn)) {
+        if (toLine < 0 || toLine > 7 || toColumn < 0 || toColumn > 7) {
+            return false;
+        }
 
-            if ((line == toLine - 2 || line == toLine + 2) && (column == toColumn + 1 || column == toColumn - 1)) {
-
+        if (chessBoard.nowPlayer.equals(this.color)) {
+            if ((Math.abs(line - toLine) == 1 && Math.abs(column - toColumn) == 2) || (Math.abs(line - toLine) == 2 && Math.abs(column - toColumn) == 1)) {
                 if (chessBoard.board[toLine][toColumn] == null || !chessBoard.board[toLine][toColumn].color.equals(this.color)) {
                     return true;
                 } else {
                     return false;
                 }
-
-            } else if ((line == toLine - 1 || line == toLine + 1) && (column == toColumn + 2 || column == toColumn - 2)) {
-
-                if (chessBoard.board[toLine][toColumn] == null || chessBoard.board[toLine][toColumn].getColor().equals(this.color)) {
-                    return true;
-                } else {
-                    return false;
-                }
             } else {
-
                 return false;
             }
-
         } else {
-
             return false;
         }
     }
+
+
 
     @Override
     public String getSymbol() {
