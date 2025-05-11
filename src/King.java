@@ -43,6 +43,9 @@ public class King extends ChessPiece {
         }
 
         if (chessBoard.board[toLine][toColumn] == null || !chessBoard.board[toLine][toColumn].getColor().equals(this.color)) {
+            if (isUnderAttack(chessBoard, toLine, toColumn)) {
+                return false;
+            }
             this.check = false;
             return true;
         } else {
