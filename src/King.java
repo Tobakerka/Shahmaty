@@ -23,7 +23,9 @@ public class King extends ChessPiece {
         }
 
         if (Math.abs(line - toLine) == 1 && Math.abs(column - toColumn) == 1) {
-            if (chessBoard.board[toLine][toColumn] != null) {
+            if (chessBoard.board[toLine][toColumn] == null || !chessBoard.board[toLine][toColumn].getColor().equals(this.color)) {
+                return true;
+            } else {
                 return false;
             }
         } else if (line == toLine) {
@@ -39,8 +41,13 @@ public class King extends ChessPiece {
                 }
             }
         }
-        this.check = false;
-        return true;
+
+        if (chessBoard.board[toLine][toColumn] == null || !chessBoard.board[toLine][toColumn].getColor().equals(this.color)) {
+            this.check = false;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean isUnderAttack(ChessBoard chessBoard, int line, int column) {
